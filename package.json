@@ -1,0 +1,21 @@
+{
+  "name": "petitsplats2.0",
+  "version": "1.0.0",
+  "description": "P7 JS 2.0 Les petits plats",
+  "main": "recipes.js",
+  "scripts": {
+    "compile:sass": "sass sass/main.scss assets/css/main.css -w",
+    "lint": "eslint --max-warnings=0 ."
+  },
+  "author": "Andréa Porche",
+  "license": "ISC",
+  "devDependencies": {
+    "@eslint/js": "^9.9.1",
+    "eslint": "^9.9.1",
+    "globals": "^15.9.0",
+    "sass": "^1.78.0"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.3"
+  }
+}
