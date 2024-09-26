@@ -94,24 +94,78 @@ main {
   border-radius: 11px;
   background: #fff;
 }
-.sort__bar .arrow {
-  transition: transform 0.3s ease;
-  margin-left: 60px;
-}
-.sort__bar .arrow.rotate {
-  transform: rotate(180deg);
-}
-.sort__bar .dropdown-menu {
-  display: none;
+.sort__bar .sort__menus .sort__dropdown .sort__dropdown__menu {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  padding: 0px 16px;
   position: absolute;
+  background: #fff;
   top: 100%;
   left: 0;
   z-index: 1000;
+  width: 100%;
+  border: none;
+  overflow: hidden;
+  transition: max-height 0.5s ease, opacity 0.5s ease;
+  max-height: 0;
+  opacity: 0;
+  visibility: hidden;
+  border-radius: 0px 0px 11px 11px;
 }
-.sort__bar .sort__dropdown.active .dropdown-menu {
-  display: block;
+.sort__bar .sort__menus .sort__dropdown .sort__dropdown__menu .tag__searchbar {
+  display: flex;
+  width: 100%;
+  border: 1px solid #c6c6c6;
+  background: none;
+  gap: 5px;
 }
-.sort__bar .sort__title {
+.sort__bar .sort__menus .sort__dropdown .sort__dropdown__menu .tag__searchbar input {
+  width: 100%;
+  border: none;
+  background: none;
+}
+.sort__bar .sort__menus .sort__dropdown .sort__dropdown__menu .tag__searchbar button {
+  border: none;
+  background: none;
+  padding: 0px 6px 0px 0px;
+}
+.sort__bar .sort__menus .sort__dropdown .sort__dropdown__menu .tag__searchbar button img {
+  height: 15px;
+  width: 15px;
+  filter: invert(60%);
+}
+.sort__bar .sort__menus .sort__dropdown .sort__dropdown__menu ul {
+  list-style: none;
+  padding: 0;
+  margin-left: -16px;
+}
+.sort__bar .sort__menus .sort__dropdown .sort__btn {
+  border: none;
+  background: none;
+}
+.sort__bar .sort__menus .sort__dropdown.active {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+.sort__bar .sort__menus .sort__dropdown.active .sort__dropdown__menu {
+  max-height: 220px;
+  opacity: 1;
+  visibility: visible;
+  transition: max-height 0.5s ease, opacity 0.5s ease;
+}
+
+.arrow {
+  transition: transform 0.3s ease;
+  margin-left: 60px;
+}
+
+.arrow.rotate {
+  transform: rotate(180deg);
+}
+
+.sort__title {
   color: #1b1b1b;
   font-family: "Anton", sans-serif;
   font-size: 21px;

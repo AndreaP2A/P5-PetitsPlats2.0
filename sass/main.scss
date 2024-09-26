@@ -96,36 +96,94 @@ main {
       align-items: center;
       border-radius: 11px;
       background: #fff;
+
+      .sort__dropdown__menu {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+        padding: 0px 16px;
+        position: absolute;
+        background: #fff;
+        top: 100%;
+        left: 0;
+        z-index: 1000;
+        width: 100%;
+        border: none;
+        overflow: hidden;
+        transition: max-height 0.5s ease, opacity 0.5s ease;
+        max-height: 0;
+        opacity: 0;
+        visibility: hidden;
+        border-radius: 0px 0px 11px 11px;
+
+        .tag__searchbar {
+          display: flex;
+          width: 100%;
+          border: 1px solid #c6c6c6;
+          background: none;
+          gap: 5px;
+
+          input {
+            width: 100%;
+            border: none;
+            background: none;
+          }
+
+          button {
+            border: none;
+            background: none;
+            padding: 0px 6px 0px 0px;
+
+            img {
+              height: 15px;
+              width: 15px;
+              filter: invert(60%);
+            }
+          }
+        }
+
+        ul {
+          list-style: none;
+          padding: 0;
+          margin-left: -16px;
+        }
+      }
+
+      .sort__btn {
+        border: none;
+        background: none;
+      }
+    }
+
+    .sort__dropdown.active {
+      border-bottom-left-radius: 0px;
+      border-bottom-right-radius: 0px;
+
+      .sort__dropdown__menu {
+        max-height: 220px;
+        opacity: 1;
+        visibility: visible;
+        transition: max-height 0.5s ease, opacity 0.5s ease;
+      }
     }
   }
+}
 
-  .arrow {
-    transition: transform 0.3s ease;
-    margin-left: 60px;
-  }
+.arrow {
+  transition: transform 0.3s ease;
+  margin-left: 60px;
+}
 
-  .arrow.rotate {
-    transform: rotate(180deg);
-  }
+.arrow.rotate {
+  transform: rotate(180deg);
+}
 
-  .dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 1000;
-  }
-
-  .sort__dropdown.active .dropdown-menu {
-    display: block;
-  }
-
-  .sort__title {
-    color: #1b1b1b;
-    font-family: "Anton", sans-serif;
-    font-size: 21px;
-    font-weight: 400;
-  }
+.sort__title {
+  color: #1b1b1b;
+  font-family: "Anton", sans-serif;
+  font-size: 21px;
+  font-weight: 400;
 }
 
 .recipe__container {

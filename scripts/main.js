@@ -109,7 +109,7 @@ searchInput.addEventListener("input", (event) => {
 
 /**
  * A reference to the button element that toggles the dropdown menu.
- * This button is expected to have the class 'btn'.
+ * This button is expected to have the class 'dropdown'.
  *
  * @type {HTMLElement}
  */
@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const dropdowns = document.querySelectorAll(".sort__dropdown");
 
   dropdowns.forEach((dropdown) => {
-    const toggleButton = dropdown.querySelector(".btn");
+    const toggleButton = dropdown.querySelector(".dropdown");
     const arrow = dropdown.querySelector(".arrow");
 
     toggleButton.addEventListener("click", function () {
