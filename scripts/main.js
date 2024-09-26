@@ -1,9 +1,15 @@
 import recipes from "./recipes.js";
 
 const searchInput = document.querySelector(".hero__searchbar input");
-console.log(searchInput); // This should log the input element
 const recipeContainer = document.querySelector(".recipe__container");
-console.log(recipes); // This should log the entire array of recipes
+
+const ingredientDropdown = document.querySelector(".dropdown__ingredients");
+const applianceDropdown = document.querySelector(".dropdown__appliances");
+const ustensilDropdown = document.querySelector(".dropdown__ustensils");
+
+let selectedIngredients = [];
+let selectedAppliance = [];
+let selectedUstensils = [];
 
 /**
  * Creates a recipe card article.
@@ -60,11 +66,7 @@ function createRecipeCard(recipe) {
 /**
  * Displays a list of recipes in the recipe container.
  *
- * This function clears the current content of the recipe container and
- * appends a card for each recipe in the provided array of recipes.
- *
- * @param {Object} recipesToDisplay - An object containing the array of recipes to display.
- * @param {Array} recipesToDisplay.array - The array of recipe objects to be displayed.
+ * @param {Array} recipesToDisplay - The array of recipe objects to be displayed.
  */
 function displayRecipes(recipesToDisplay = []) {
   recipeContainer.innerHTML = "";
@@ -81,53 +83,179 @@ function displayRecipes(recipesToDisplay = []) {
 }
 
 /**
- * Filters and displays recipes based on a search query (search bar).
- *
- * @param {string} query - The search query used to filter recipes.
+ * Extract unique values from recipes for ingredients, appliance, and ustensils.
  */
-function searchRecipes(query) {
-  const filteredRecipes = recipes.filter((recipe) => {
-    const nameMatch = recipe.name.toLowerCase().includes(query.toLowerCase());
-    const ingredientMatch = recipe.ingredients.some((ingredient) =>
-      ingredient.ingredient.toLowerCase().includes(query.toLowerCase())
+function getUniqueItemsFromRecipes(recipes) {
+  const ingredients = new Set();
+  const appliance = new Set();
+  const ustensils = new Set();
+
+  recipes.forEach((recipe) => {
+    recipe.ingredients.forEach((item) =>
+      ingredients.add(item.ingredient.toLowerCase())
     );
-    return nameMatch || ingredientMatch;
+    appliance.add(recipe.appliance.toLowerCase());
+    recipe.ustensils.forEach((item) => ustensils.add(item.toLowerCase()));
   });
-  console.log("Filtered Recipes:", filteredRecipes); // Check filtered results
-  displayRecipes(filteredRecipes);
+
+  return {
+    ingredients: Array.from(ingredients),
+    appliance: Array.from(appliance),
+    ustensils: Array.from(ustensils),
+  };
 }
 
 /**
- * Event listener callback function to handle input by the user
+ * Populates the dropdown menu for ingredients, appliance, or ustensils.
+ *
+ * @param {HTMLElement} dropdown - The dropdown menu container element.
+ * @param {Array} items - The array of items to populate the dropdown with.
  */
-searchInput.addEventListener("input", (event) => {
-  console.log("Input event triggered");
-  const query = event.target.value;
-  console.log("User input:", query);
-  searchRecipes(query);
+function populateDropdown(dropdown, items) {
+  dropdown.innerHTML = ""; // Clear previous items
+
+  items.forEach((item) => {
+    const listItem = document.createElement("li");
+    listItem.innerHTML = `<a class="dropdown-item" href="#">${item}</a>`;
+    dropdown.appendChild(listItem);
+
+    // Event listener to handle filtering by selected item
+    listItem.addEventListener("click", () => {
+      handleDropdownSelection(dropdown, item);
+    });
+  });
+}
+
+/**
+ * Filter recipes based on selected items from dropdowns and search query.
+ */
+function filterRecipes() {
+  let filteredRecipes = recipes;
+
+  // Apply search bar filter if query exists
+  const searchQuery = searchInput.value.toLowerCase();
+  if (searchQuery) {
+    filteredRecipes = filteredRecipes.filter((recipe) => {
+      const nameMatch = recipe.name.toLowerCase().includes(searchQuery);
+      const ingredientMatch = recipe.ingredients.some((ingredient) =>
+        ingredient.ingredient.toLowerCase().includes(searchQuery)
+      );
+      return nameMatch || ingredientMatch;
+    });
+  }
+
+  // Apply dropdown filters
+  if (selectedIngredients.length) {
+    filteredRecipes = filteredRecipes.filter((recipe) =>
+      selectedIngredients.every((selected) =>
+        recipe.ingredients.some(
+          (ingredient) => ingredient.ingredient.toLowerCase() === selected
+        )
+      )
+    );
+  }
+
+  if (selectedAppliance.length) {
+    filteredRecipes = filteredRecipes.filter((recipe) =>
+      selectedAppliance.includes(recipe.appliance.toLowerCase())
+    );
+  }
+
+  if (selectedUstensils.length) {
+    filteredRecipes = filteredRecipes.filter((recipe) =>
+      selectedUstensils.every((selected) => recipe.ustensils.includes(selected))
+    );
+  }
+
+  // Display filtered recipes
+  displayRecipes(filteredRecipes);
+
+  // Update dropdowns based on filtered recipes
+  updateDropdowns(filteredRecipes);
+}
+
+/**
+ * Update dropdown lists dynamically based on the displayed recipes.
+ */
+function updateDropdowns(filteredRecipes) {
+  const { ingredients, appliance, ustensils } =
+    getUniqueItemsFromRecipes(filteredRecipes);
+
+  populateDropdown(ingredientDropdown, ingredients);
+  populateDropdown(applianceDropdown, appliance);
+  populateDropdown(ustensilDropdown, ustensils);
+}
+
+/**
+ * Handle selection from dropdown menus.
+ */
+function handleDropdownSelection(dropdown, item) {
+  // Add or remove the selected item from the corresponding array
+  if (dropdown === ingredientDropdown) {
+    selectedIngredients = toggleSelection(selectedIngredients, item);
+  } else if (dropdown === applianceDropdown) {
+    selectedAppliance = toggleSelection(selectedAppliance, item);
+  } else if (dropdown === ustensilDropdown) {
+    selectedUstensils = toggleSelection(selectedUstensils, item);
+  }
+
+  // Filter recipes after selection
+  filterRecipes();
+}
+
+/**
+ * Toggle selection in the filter arrays (add or remove the selected item).
+ */
+function toggleSelection(array, item) {
+  const index = array.indexOf(item.toLowerCase());
+  if (index === -1) {
+    array.push(item.toLowerCase()); // Add if not already selected
+  } else {
+    array.splice(index, 1); // Remove if already selected
+  }
+  return array;
+}
+
+/**
+ * Event listener for search input.
+ */
+searchInput.addEventListener("input", () => {
+  filterRecipes(); // Filter recipes when the search query changes
 });
 
 /**
- * A reference to the button element that toggles the dropdown menu.
- * This button is expected to have the class 'dropdown'.
- *
- * @type {HTMLElement}
+ * Function to handle the toggling of dropdowns and arrow rotation.
  */
-document.addEventListener("DOMContentLoaded", function () {
+function handleDropdownToggle() {
   const dropdowns = document.querySelectorAll(".sort__dropdown");
 
   dropdowns.forEach((dropdown) => {
-    const toggleButton = dropdown.querySelector(".dropdown");
+    const toggleButton = dropdown.querySelector(".sort__btn");
     const arrow = dropdown.querySelector(".arrow");
+    const dropdownMenu = dropdown.querySelector(".sort__dropdown__menu");
 
     toggleButton.addEventListener("click", function () {
-      dropdown.classList.toggle("active"); // Toggle dropdown visibility
-      arrow.classList.toggle("rotate"); // Toggle rotation
+      // Toggle dropdown visibility
+      dropdown.classList.toggle("active");
+      // Toggle arrow rotation
+      arrow.classList.toggle("rotate");
+      // Toggle dropdown menu visibility with max-height transition
+      if (dropdownMenu.style.maxHeight) {
+        dropdownMenu.style.maxHeight = null; // Collapse
+      } else {
+        dropdownMenu.style.maxHeight = dropdownMenu.scrollHeight + "px"; // Expand
+      }
     });
   });
-});
+}
 
 /**
- * Init
+ * Initial population of dropdowns and display of all recipes.
  */
-displayRecipes(recipes);
+function init() {
+  displayRecipes(recipes);
+  updateDropdowns(recipes);
+  handleDropdownToggle(); // Initialize dropdown toggle functionality
+}
+
+document.addEventListener("DOMContentLoaded", init);

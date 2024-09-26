@@ -2,17 +2,16 @@ body {
   background: #ededed;
 }
 
-header {
+.header {
   background: url("/assets/img/Hero-header.jpeg") no-repeat center center;
   background-size: cover;
   width: 100vw;
   height: 620px;
   padding: 50px 70px;
-}
-
-header img {
-  width: 207px;
-  height: 26px;
+  &__bg {
+    width: 207px;
+    height: 26px;
+  }
 }
 
 h1 {
@@ -31,41 +30,76 @@ h1 {
   justify-content: center;
   height: 100%;
   gap: 30px;
+
+  .hero__searchbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    width: 954px;
+    height: 72px;
+    flex-shrink: 0;
+    border-radius: 11px;
+    background: #fff;
+
+    &__input {
+      border: 0;
+      width: 90%;
+      height: 100%;
+      color: #7a7a7a;
+      font-family: "Manrope", sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      &:focus {
+        outline: none;
+        &::-webkit-input-placeholder {
+          color: transparent;
+          -webkit-transition: color 0.2s ease;
+          transition: color 0.2s ease;
+        }
+
+        &:-moz-placeholder {
+          /* Firefox 18- */
+          color: transparent;
+          -webkit-transition: color 0.2s ease;
+          transition: color 0.2s ease;
+        }
+
+        &::-moz-placeholder {
+          /* Firefox 19+ */
+          color: transparent;
+          -webkit-transition: color 0.2s ease;
+          transition: color 0.2s ease;
+        }
+
+        &:-ms-input-placeholder {
+          color: transparent;
+          -webkit-transition: color 0.2s ease;
+          transition: color 0.2s ease;
+        }
+      }
+    }
+    &__btn {
+      width: 51px;
+      height: 52px;
+      background-color: #1b1b1b;
+      border-radius: 10px;
+
+      img {
+        filter: invert(100%);
+      }
+    }
+    &__btn:hover {
+      background-color: #ffd15b;
+      border: none;
+    }
+  }
 }
 
-.hero__searchbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px;
-  width: 954px;
-  height: 72px;
-  flex-shrink: 0;
-  border-radius: 11px;
-  background: #fff;
-
-  input {
-    border: 0;
-    width: 90%;
-    height: 100%;
-    color: #7a7a7a;
-    font-family: "Manrope", sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-  }
-
-  button {
-    width: 51px;
-    height: 52px;
-    background-color: #1b1b1b;
-    border-radius: 10px;
-  }
-
-  img {
-    filter: invert(100%);
-    width: 27px;
-    height: 28px;
-  }
+.recipe_card_img {
+  filter: invert(100%);
+  width: 27px;
+  height: 28px;
 }
 
 main {
@@ -143,10 +177,12 @@ main {
           }
         }
 
-        ul {
+        .dropdown__ingredients,
+        .dropdown__appliances,
+        .dropdown__ustensils {
           list-style: none;
           padding: 0;
-          margin-left: -16px;
+          width: 100%;
         }
       }
 
@@ -161,7 +197,7 @@ main {
       border-bottom-right-radius: 0px;
 
       .sort__dropdown__menu {
-        max-height: 220px;
+        max-height: 320px;
         opacity: 1;
         visibility: visible;
         transition: max-height 0.5s ease, opacity 0.5s ease;

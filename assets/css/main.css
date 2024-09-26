@@ -2,15 +2,14 @@ body {
   background: #ededed;
 }
 
-header {
+.header {
   background: url("/assets/img/Hero-header.jpeg") no-repeat center center;
   background-size: cover;
   width: 100vw;
   height: 620px;
   padding: 50px 70px;
 }
-
-header img {
+.header__bg {
   width: 207px;
   height: 26px;
 }
@@ -32,8 +31,7 @@ h1 {
   height: 100%;
   gap: 30px;
 }
-
-.hero__searchbar {
+.hero__header .hero__searchbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -44,7 +42,7 @@ h1 {
   border-radius: 11px;
   background: #fff;
 }
-.hero__searchbar input {
+.hero__header .hero__searchbar__input {
   border: 0;
   width: 90%;
   height: 100%;
@@ -53,13 +51,46 @@ h1 {
   font-size: 16px;
   font-weight: 400;
 }
-.hero__searchbar button {
+.hero__header .hero__searchbar__input:focus {
+  outline: none;
+}
+.hero__header .hero__searchbar__input:focus::-webkit-input-placeholder {
+  color: transparent;
+  -webkit-transition: color 0.2s ease;
+  transition: color 0.2s ease;
+}
+.hero__header .hero__searchbar__input:focus:-moz-placeholder {
+  /* Firefox 18- */
+  color: transparent;
+  -webkit-transition: color 0.2s ease;
+  transition: color 0.2s ease;
+}
+.hero__header .hero__searchbar__input:focus::-moz-placeholder {
+  /* Firefox 19+ */
+  color: transparent;
+  -webkit-transition: color 0.2s ease;
+  transition: color 0.2s ease;
+}
+.hero__header .hero__searchbar__input:focus:-ms-input-placeholder {
+  color: transparent;
+  -webkit-transition: color 0.2s ease;
+  transition: color 0.2s ease;
+}
+.hero__header .hero__searchbar__btn {
   width: 51px;
   height: 52px;
   background-color: #1b1b1b;
   border-radius: 10px;
 }
-.hero__searchbar img {
+.hero__header .hero__searchbar__btn img {
+  filter: invert(100%);
+}
+.hero__header .hero__searchbar__btn:hover {
+  background-color: #ffd15b;
+  border: none;
+}
+
+.recipe_card_img {
   filter: invert(100%);
   width: 27px;
   height: 28px;
@@ -136,10 +167,12 @@ main {
   width: 15px;
   filter: invert(60%);
 }
-.sort__bar .sort__menus .sort__dropdown .sort__dropdown__menu ul {
+.sort__bar .sort__menus .sort__dropdown .sort__dropdown__menu .dropdown__ingredients,
+.sort__bar .sort__menus .sort__dropdown .sort__dropdown__menu .dropdown__appliances,
+.sort__bar .sort__menus .sort__dropdown .sort__dropdown__menu .dropdown__ustensils {
   list-style: none;
   padding: 0;
-  margin-left: -16px;
+  width: 100%;
 }
 .sort__bar .sort__menus .sort__dropdown .sort__btn {
   border: none;
@@ -150,7 +183,7 @@ main {
   border-bottom-right-radius: 0px;
 }
 .sort__bar .sort__menus .sort__dropdown.active .sort__dropdown__menu {
-  max-height: 220px;
+  max-height: 320px;
   opacity: 1;
   visibility: visible;
   transition: max-height 0.5s ease, opacity 0.5s ease;
