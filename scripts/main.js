@@ -108,6 +108,26 @@ searchInput.addEventListener("input", (event) => {
 });
 
 /**
+ * A reference to the button element that toggles the dropdown menu.
+ * This button is expected to have the class 'btn'.
+ *
+ * @type {HTMLElement}
+ */
+document.addEventListener("DOMContentLoaded", function () {
+  const dropdowns = document.querySelectorAll(".sort__dropdown");
+
+  dropdowns.forEach((dropdown) => {
+    const toggleButton = dropdown.querySelector(".btn");
+    const arrow = dropdown.querySelector(".arrow");
+
+    toggleButton.addEventListener("click", function () {
+      dropdown.classList.toggle("active"); // Toggle dropdown visibility
+      arrow.classList.toggle("rotate"); // Toggle rotation
+    });
+  });
+});
+
+/**
  * Init
  */
 displayRecipes(recipes);

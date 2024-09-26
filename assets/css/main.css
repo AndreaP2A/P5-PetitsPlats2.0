@@ -87,11 +87,29 @@ main {
 }
 .sort__bar .sort__menus .sort__dropdown {
   display: flex;
+  position: relative;
   gap: 63px;
   padding: 17px 16px;
   align-items: center;
   border-radius: 11px;
   background: #fff;
+}
+.sort__bar .arrow {
+  transition: transform 0.3s ease;
+  margin-left: 60px;
+}
+.sort__bar .arrow.rotate {
+  transform: rotate(180deg);
+}
+.sort__bar .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+}
+.sort__bar .sort__dropdown.active .dropdown-menu {
+  display: block;
 }
 .sort__bar .sort__title {
   color: #1b1b1b;
