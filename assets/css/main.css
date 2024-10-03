@@ -124,7 +124,7 @@ main {
   flex-direction: column;
   gap: 20px;
   align-items: center;
-  padding: 0px 16px;
+  padding: 0;
   position: absolute;
   background: #fff;
   top: 100%;
@@ -138,13 +138,15 @@ main {
   opacity: 0;
   visibility: hidden;
   border-radius: 0px 0px 11px 11px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 .sort__bar .sort__menus .sort__dropdown .sort__dropdown__menu .tag__searchbar {
   display: flex;
-  width: 100%;
+  width: 85%;
   border: 1px solid #c6c6c6;
   background: none;
   gap: 5px;
+  margin: 0px 0px;
 }
 .sort__bar .sort__menus .sort__dropdown .sort__dropdown__menu .tag__searchbar input {
   width: 100%;
@@ -167,6 +169,29 @@ main {
   list-style: none;
   padding: 0;
   width: 100%;
+}
+.sort__bar .sort__menus .sort__dropdown .sort__dropdown__menu .dropdown__ingredients li,
+.sort__bar .sort__menus .sort__dropdown .sort__dropdown__menu .dropdown__appliances li,
+.sort__bar .sort__menus .sort__dropdown .sort__dropdown__menu .dropdown__ustensils li {
+  display: flex;
+  justify-content: space-between;
+  padding: 9px 9px 9px 16px;
+}
+.sort__bar .sort__menus .sort__dropdown .sort__dropdown__menu .dropdown__ingredients .highlight,
+.sort__bar .sort__menus .sort__dropdown .sort__dropdown__menu .dropdown__appliances .highlight,
+.sort__bar .sort__menus .sort__dropdown .sort__dropdown__menu .dropdown__ustensils .highlight {
+  background-color: #ffd15b;
+}
+.sort__bar .sort__menus .sort__dropdown .sort__dropdown__menu .dropdown__ingredients .highlight .remove-tag,
+.sort__bar .sort__menus .sort__dropdown .sort__dropdown__menu .dropdown__appliances .highlight .remove-tag,
+.sort__bar .sort__menus .sort__dropdown .sort__dropdown__menu .dropdown__ustensils .highlight .remove-tag {
+  border: none;
+  background: none;
+}
+.sort__bar .sort__menus .sort__dropdown .sort__dropdown__menu .dropdown__ingredients .dropdown-item,
+.sort__bar .sort__menus .sort__dropdown .sort__dropdown__menu .dropdown__appliances .dropdown-item,
+.sort__bar .sort__menus .sort__dropdown .sort__dropdown__menu .dropdown__ustensils .dropdown-item {
+  padding: 0;
 }
 .sort__bar .sort__menus .sort__dropdown .sort__dropdown__menu .dropdown__ingredients .dropdown-item:hover,
 .sort__bar .sort__menus .sort__dropdown .sort__dropdown__menu .dropdown__appliances .dropdown-item:hover,

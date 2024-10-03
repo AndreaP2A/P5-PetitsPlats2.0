@@ -130,7 +130,7 @@ main {
         flex-direction: column;
         gap: 20px;
         align-items: center;
-        padding: 0px 16px;
+        padding: 0;
         position: absolute;
         background: #fff;
         top: 100%;
@@ -144,13 +144,15 @@ main {
         opacity: 0;
         visibility: hidden;
         border-radius: 0px 0px 11px 11px;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 
         .tag__searchbar {
           display: flex;
-          width: 100%;
+          width: 85%;
           border: 1px solid #c6c6c6;
           background: none;
           gap: 5px;
+          margin: 0px 0px;
 
           input {
             width: 100%;
@@ -178,8 +180,26 @@ main {
           padding: 0;
           width: 100%;
 
-          .dropdown-item:hover {
+          li {
+            display: flex;
+            justify-content: space-between;
+            padding: 9px 9px 9px 16px;
+          }
+
+          .highlight {
             background-color: #ffd15b;
+
+            .remove-tag {
+              border: none;
+              background: none;
+            }
+          }
+
+          .dropdown-item {
+            padding: 0;
+            &:hover {
+              background-color: #ffd15b;
+            }
           }
         }
       }

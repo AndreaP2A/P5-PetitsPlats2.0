@@ -108,19 +108,50 @@ function getUniqueItemsFromRecipes(recipes) {
  * @param {HTMLElement} dropdown - The dropdown menu container element.
  * @param {Array} items - The array of items to populate the dropdown with.
  */
-function populateDropdown(dropdown, items) {
-  dropdown.innerHTML = ""; // Clear previous items
+function populateDropdown(dropdown, items, selectedItems) {
+  dropdown.innerHTML = ""; //
+
+  const selectedItemsSet = new Set(selectedItems); // For faster lookup of selected items
+  const selectedListItems = [];
+  const unselectedListItems = [];
 
   items.forEach((item) => {
     const listItem = document.createElement("li");
-    listItem.innerHTML = `<a class="dropdown-item" href="#">${item}</a>`;
-    dropdown.appendChild(listItem);
+    const isSelected = selectedItemsSet.has(item);
+    listItem.classList.toggle("highlight", isSelected);
 
-    // Event listener to handle filtering by selected item
-    listItem.addEventListener("click", () => {
+    listItem.innerHTML = `
+      <a class="dropdown-item" href="#">${item}</a>
+      ${
+        isSelected
+          ? '<button class="remove-tag"><img src="/assets/img/icons/icon-close-mini.svg" alt="Remove tag"></button>'
+          : ""
+      }
+    `;
+
+    if (isSelected) {
+      selectedListItems.push(listItem); // Store selected item
+    } else {
+      unselectedListItems.push(listItem); // Store unselected item
+    }
+
+    // Event listener to handle selection
+    listItem.querySelector("a").addEventListener("click", () => {
       handleDropdownSelection(dropdown, item);
     });
+
+    // If selected, add removal functionality
+    if (isSelected) {
+      listItem.querySelector(".remove-tag").addEventListener("click", (e) => {
+        e.stopPropagation(); // Prevent triggering the selection event
+        removeTag(item);
+      });
+    }
   });
+
+  // Append selected items first, followed by unselected items
+  selectedListItems.forEach((item) => dropdown.appendChild(item));
+  unselectedListItems.forEach((item) => dropdown.appendChild(item));
 }
 
 /**
@@ -181,9 +212,9 @@ function updateDropdowns(filteredRecipes) {
   const { ingredients, appliance, ustensils } =
     getUniqueItemsFromRecipes(filteredRecipes);
 
-  populateDropdown(ingredientDropdown, ingredients);
-  populateDropdown(applianceDropdown, appliance);
-  populateDropdown(ustensilDropdown, ustensils);
+  populateDropdown(ingredientDropdown, ingredients, selectedIngredients);
+  populateDropdown(applianceDropdown, appliance, selectedAppliance);
+  populateDropdown(ustensilDropdown, ustensils, selectedUstensils);
 }
 
 /**
