@@ -9,6 +9,16 @@ const ingredientDropdown = document.querySelector(".dropdown__ingredients");
 const applianceDropdown = document.querySelector(".dropdown__appliances");
 const ustensilDropdown = document.querySelector(".dropdown__ustensils");
 
+const ingredientSearchBar = document.querySelector(
+  ".sort__dropdown.ingredients .tag__searchbar input"
+);
+const applianceSearchBar = document.querySelector(
+  ".sort__dropdown.appliances .tag__searchbar input"
+);
+const ustensilSearchBar = document.querySelector(
+  ".sort__dropdown.ustensils .tag__searchbar input"
+);
+
 let selectedIngredients = [];
 let selectedAppliance = [];
 let selectedUstensils = [];
@@ -154,6 +164,13 @@ function populateDropdown(dropdown, items, selectedItems) {
   unselectedListItems.forEach((item) => dropdown.appendChild(item));
 }
 
+function handleSearchInput(searchQuery, items, dropdown, selectedItems) {
+  const filteredItems = items.filter((item) =>
+    item.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+  populateDropdown(dropdown, filteredItems, selectedItems);
+}
+
 /**
  * Filter recipes based on selected items from dropdowns and search query.
  */
@@ -221,7 +238,7 @@ function updateDropdowns(filteredRecipes) {
  * Update the active tags in the .active__tags container.
  */
 function updateActiveTags() {
-  activeTagContainer.innerHTML = ""; // Clear the current active tags
+  activeTagContainer.innerHTML = "";
 
   const allActiveTags = [
     ...selectedIngredients,
@@ -289,6 +306,34 @@ function toggleSelection(array, item) {
  */
 searchInput.addEventListener("input", () => {
   filterRecipes(); // Filter recipes when the search query changes
+});
+
+/**
+ * Event listeners for the dropdown search bars.
+ */
+ingredientSearchBar.addEventListener("input", (e) => {
+  handleSearchInput(
+    e.target.value,
+    getUniqueItemsFromRecipes(recipes).ingredients,
+    ingredientDropdown,
+    selectedIngredients
+  );
+});
+applianceSearchBar.addEventListener("input", (e) => {
+  handleSearchInput(
+    e.target.value,
+    getUniqueItemsFromRecipes(recipes).appliance,
+    applianceDropdown,
+    selectedAppliance
+  );
+});
+ustensilSearchBar.addEventListener("input", (e) => {
+  handleSearchInput(
+    e.target.value,
+    getUniqueItemsFromRecipes(recipes).ustensils,
+    ustensilDropdown,
+    selectedUstensils
+  );
 });
 
 /**

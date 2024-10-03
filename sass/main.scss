@@ -148,6 +148,7 @@ main {
 
         .tag__searchbar {
           display: flex;
+          height: 36px;
           width: 85%;
           border: 1px solid #c6c6c6;
           background: none;
@@ -156,6 +157,8 @@ main {
 
           input {
             width: 100%;
+            height: 100%;
+            padding: 5px;
             border: none;
             background: none;
           }
@@ -184,21 +187,23 @@ main {
             display: flex;
             justify-content: space-between;
             padding: 9px 9px 9px 16px;
-          }
+            a:hover {
+              background: none;
+            }
+            &:hover {
+              background-color: #ffd15b;
+            }
 
-          .highlight {
-            background-color: #ffd15b;
+            &.highlight {
+              background-color: #ffd15b;
+            }
 
+            .dropdown-item {
+              padding: 0;
+            }
             .remove-tag {
               border: none;
               background: none;
-            }
-          }
-
-          .dropdown-item {
-            padding: 0;
-            &:hover {
-              background-color: #ffd15b;
             }
           }
         }
