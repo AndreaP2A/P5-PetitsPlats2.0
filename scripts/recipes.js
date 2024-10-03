@@ -17,7 +17,7 @@ const recipes = [
       {
         ingredient: "Crème de coco",
         quantity: 2,
-        unit: "cuillères à soupe",
+        unit: "cuillère(s) à soupe",
       },
       {
         ingredient: "Sucre",
@@ -32,7 +32,7 @@ const recipes = [
     description:
       "Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée",
     appliance: "Blender",
-    ustensils: ["cuillère à Soupe", "verres", "presse citron"],
+    ustensils: ["cuillère(s) à soupe", "verres", "presse citron"],
   },
   {
     id: 2,
@@ -69,7 +69,7 @@ const recipes = [
     ],
     time: 60,
     description:
-      "Découper le thon en dés, mettre dans un plat et recouvrir de jus de citron vert (mieux vaut prendre un plat large et peu profond). Laisser reposer au réfrigérateur au moins 2 heures. (Si possible faites-le le soir pour le lendemain. Après avoir laissé mariner le poisson, coupez le concombre en fines rondelles sans la peau et les tomates en prenant soin de retirer les pépins. Rayer la carotte. Ajouter les légumes au poissons avec le citron cette fois ci dans un Saladier. Ajouter le lait de coco. Pour ajouter un peu plus de saveur vous pouvez ajouter 1 à 2 cuillères à soupe de Crème de coco",
+      "Découper le thon en dés, mettre dans un plat et recouvrir de jus de citron vert (mieux vaut prendre un plat large et peu profond). Laisser reposer au réfrigérateur au moins 2 heures. (Si possible faites-le le soir pour le lendemain. Après avoir laissé mariner le poisson, coupez le concombre en fines rondelles sans la peau et les tomates en prenant soin de retirer les pépins. Rayer la carotte. Ajouter les légumes au poissons avec le citron cette fois ci dans un Saladier. Ajouter le lait de coco. Pour ajouter un peu plus de saveur vous pouvez ajouter 1 à 2 cuillère(s) à soupe de Crème de coco",
     appliance: "Saladier",
     ustensils: ["presse citron"],
   },
@@ -104,7 +104,7 @@ const recipes = [
       {
         ingredient: "Huile d'olive",
         quantity: 1,
-        unit: "cuillères à soupe",
+        unit: "cuillère(s) à soupe",
       },
     ],
     time: 80,
@@ -176,7 +176,7 @@ const recipes = [
       {
         ingredient: "Crème fraîche",
         quantity: 2,
-        unit: "cuillères à soupe",
+        unit: "cuillère(s) à soupe",
       },
       {
         ingredient: "gruyère râpé",
@@ -186,7 +186,7 @@ const recipes = [
       {
         ingredient: "Moutarde de Dijon",
         quantity: 1,
-        unit: "cuillères à soupe",
+        unit: "cuillère(s) à soupe",
       },
     ],
     time: 45,
@@ -480,12 +480,12 @@ const recipes = [
       {
         ingredient: "Vinaigre de cidre",
         quantity: 1,
-        unit: "cuillère à soupe",
+        unit: "cuillère(s) à soupe",
       },
       {
         ingredient: "huile d'olive",
         quantity: 2,
-        unit: "cuillère à soupe",
+        unit: "cuillère(s) à soupe",
       },
     ],
     time: 40,
@@ -604,7 +604,7 @@ const recipes = [
       {
         ingredient: "huile d'olives",
         quantity: 2,
-        unit: "cuillère à soupe",
+        unit: "cuillère(s) à soupe",
       },
     ],
     time: 45,
@@ -631,7 +631,7 @@ const recipes = [
       {
         ingredient: "Jus de citron",
         quantity: 1,
-        unit: "cuillères à soupe",
+        unit: "cuillère(s) à soupe",
       },
       {
         ingredient: "Glaçons",
@@ -643,7 +643,7 @@ const recipes = [
     ],
     time: 15,
     description:
-      "Coupez les fraises en morceaux, découpez la chaire de la pastèque en retirant les pépins. Mettre le tout dans le blender. Ajouter un cuillère à soupe de juste de citron ainsi que les glaçons. Ajoutez quelques feuilles de menthe pour plus de fraîcheur. Mixez le tout. Servir et déguster.",
+      "Coupez les fraises en morceaux, découpez la chaire de la pastèque en retirant les pépins. Mettre le tout dans le blender. Ajouter un cuillère(s) à soupe de juste de citron ainsi que les glaçons. Ajoutez quelques feuilles de menthe pour plus de fraîcheur. Mixez le tout. Servir et déguster.",
     appliance: "Blender",
     ustensils: ["verres", "couteau", "presse citron"],
   },
@@ -738,7 +738,7 @@ const recipes = [
       {
         ingredient: "huile d'olive",
         quantity: 1,
-        unit: "cuillères à soupe",
+        unit: "cuillère(s) à soupe",
       },
     ],
     time: 30,
@@ -780,7 +780,7 @@ const recipes = [
       {
         ingredient: "Crème fraîche",
         quantity: 1,
-        unit: "cuillères à soupe",
+        unit: "cuillère(s) à soupe",
       },
     ],
     time: 30,
@@ -900,7 +900,7 @@ const recipes = [
       {
         ingredient: "Mayonnaise",
         quantity: 2,
-        unit: "cuillères à soupe",
+        unit: "cuillère(s) à soupe",
       },
     ],
     time: 40,
@@ -996,7 +996,7 @@ const recipes = [
       {
         ingredient: "Crème fraîche",
         quantity: 4,
-        unit: "cuillère à soupe",
+        unit: "cuillère(s) à soupe",
       },
       {
         ingredient: "Vermicelles",
@@ -1189,7 +1189,7 @@ const recipes = [
     description:
       "Beurrer les tranches de pain, ajouter entre 2 tranches de pain de mie 1 tranche d’emmental, une de blanc de dinde, et une autre d'emmental. Dans un récipient, mélanger le gruyère rappé avec le lait et la noix de muscade. Mettre sur les croque monsieur. Placer au four durant 10 minutes.",
     appliance: "Four",
-    ustensils: ["râpe à fromage", "cuillère à Soupe", "couteau"],
+    ustensils: ["râpe à fromage", "cuillère(s) à soupe", "couteau"],
   },
   {
     id: 33,
@@ -1214,12 +1214,12 @@ const recipes = [
       {
         ingredient: "Fromage blanc",
         quantity: 4,
-        unit: "cuillères à soupe",
+        unit: "cuillère(s) à soupe",
       },
       {
         ingredient: "Jus de citron",
         quantity: 1,
-        unit: "cuillères à soupe",
+        unit: "cuillère(s) à soupe",
       },
     ],
     time: 5,
@@ -1280,7 +1280,7 @@ const recipes = [
       {
         ingredient: "Crème fraîche",
         quantity: 2,
-        unit: "cuillères à soupe",
+        unit: "cuillère(s) à soupe",
       },
       {
         ingredient: "Cumin",
@@ -1331,7 +1331,7 @@ const recipes = [
       {
         ingredient: "Maïzena",
         quantity: 1,
-        unit: "cuillères à soupe",
+        unit: "cuillère(s) à soupe",
       },
     ],
     time: 35,
@@ -1411,7 +1411,7 @@ const recipes = [
     description:
       "Fouettez les oeufs, le sucre et le lait. tremper les tranches de pain. Le cuire au four pendant environ 10 minutes à 180°. Servir",
     appliance: "Four",
-    ustensils: ["fouet", "bol", "Cuillère à Soupe"],
+    ustensils: ["fouet", "bol", "cuillère(s) à soupe"],
   },
   {
     id: 39,
@@ -1778,7 +1778,7 @@ const recipes = [
       {
         ingredient: "Miel",
         quantity: 2,
-        unit: "cuillères à soupe",
+        unit: "cuillère(s) à soupe",
       },
     ],
     time: 0,

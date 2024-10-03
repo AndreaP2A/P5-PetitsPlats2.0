@@ -2,6 +2,8 @@ import recipes from "./recipes.js";
 
 const searchInput = document.querySelector(".hero__searchbar input");
 const recipeContainer = document.querySelector(".recipe__container");
+const sortTitle = document.querySelector(".sort__title");
+const activeTagContainer = document.querySelector(".active__tags"); // Reference to .active__tags div
 
 const ingredientDropdown = document.querySelector(".dropdown__ingredients");
 const applianceDropdown = document.querySelector(".dropdown__appliances");
@@ -15,13 +17,6 @@ let selectedUstensils = [];
  * Creates a recipe card article.
  *
  * @param {Object} recipe - The recipe object.
- * @param {string} recipe.name - The name of the recipe.
- * @param {string} recipe.image - The image filename of the recipe.
- * @param {string} recipe.description - The description of the recipe.
- * @param {Array} recipe.ingredients - The list of ingredients.
- * @param {string} recipe.ingredients[].ingredient - The name of the ingredient.
- * @param {number} [recipe.ingredients[].quantity] - The quantity of the ingredient.
- * @param {string} [recipe.ingredients[].unit] - The unit of the ingredient quantity.
  * @returns {HTMLElement} The recipe card element.
  */
 function createRecipeCard(recipe) {
@@ -73,13 +68,15 @@ function displayRecipes(recipesToDisplay = []) {
 
   if (recipesToDisplay.length === 0) {
     recipeContainer.innerHTML = `<p>Aucune recette trouvée</p>`;
-    return;
   }
 
   recipesToDisplay.forEach((recipe) => {
     const recipeCard = createRecipeCard(recipe);
     recipeContainer.appendChild(recipeCard);
   });
+
+  // Update the sort__title with the current number of displayed recipes
+  sortTitle.innerHTML = `${recipesToDisplay.length} RECETTES`;
 }
 
 /**
@@ -172,6 +169,9 @@ function filterRecipes() {
 
   // Update dropdowns based on filtered recipes
   updateDropdowns(filteredRecipes);
+
+  // Update the active tags
+  updateActiveTags();
 }
 
 /**
@@ -184,6 +184,43 @@ function updateDropdowns(filteredRecipes) {
   populateDropdown(ingredientDropdown, ingredients);
   populateDropdown(applianceDropdown, appliance);
   populateDropdown(ustensilDropdown, ustensils);
+}
+
+/**
+ * Update the active tags in the .active__tags container.
+ */
+function updateActiveTags() {
+  activeTagContainer.innerHTML = ""; // Clear the current active tags
+
+  const allActiveTags = [
+    ...selectedIngredients,
+    ...selectedAppliance,
+    ...selectedUstensils,
+  ];
+
+  allActiveTags.forEach((tag) => {
+    const tagElement = document.createElement("span");
+    tagElement.classList.add("active__tag__item");
+    tagElement.innerHTML = `${tag} <button class="remove-tag">&times;</button>`;
+
+    // Remove tag when clicked and update the filters
+    tagElement.querySelector(".remove-tag").addEventListener("click", () => {
+      removeTag(tag);
+    });
+
+    activeTagContainer.appendChild(tagElement);
+  });
+}
+
+/**
+ * Remove a tag and update the corresponding filters.
+ */
+function removeTag(tag) {
+  selectedIngredients = selectedIngredients.filter((item) => item !== tag);
+  selectedAppliance = selectedAppliance.filter((item) => item !== tag);
+  selectedUstensils = selectedUstensils.filter((item) => item !== tag);
+
+  filterRecipes(); // Reapply the filtering
 }
 
 /**
