@@ -201,7 +201,7 @@ function updateActiveTags() {
   allActiveTags.forEach((tag) => {
     const tagElement = document.createElement("span");
     tagElement.classList.add("active__tag__item");
-    tagElement.innerHTML = `${tag} <button class="remove-tag">&times;</button>`;
+    tagElement.innerHTML = `${tag} <button class="remove-tag"><img src="/assets/img/icons/icon-close.svg" alt="Remove tag"></button>`;
 
     // Remove tag when clicked and update the filters
     tagElement.querySelector(".remove-tag").addEventListener("click", () => {

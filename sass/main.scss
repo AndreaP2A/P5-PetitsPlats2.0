@@ -96,12 +96,6 @@ h1 {
   }
 }
 
-.recipe_card_img {
-  filter: invert(100%);
-  width: 27px;
-  height: 28px;
-}
-
 main {
   padding: 20px 100px;
 }
@@ -183,6 +177,10 @@ main {
           list-style: none;
           padding: 0;
           width: 100%;
+
+          .dropdown-item:hover {
+            background-color: #ffd15b;
+          }
         }
       }
 
@@ -220,6 +218,38 @@ main {
   font-family: "Anton", sans-serif;
   font-size: 21px;
   font-weight: 400;
+}
+
+.active__tags {
+  display: flex;
+  gap: 30px;
+
+  .active__tag__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    font-family: "Manrope", sans-serif;
+    font-size: 14px;
+    padding: 17px 18px;
+    border-radius: 10px;
+    background: #ffd15b;
+  }
+  .remove-tag {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: none;
+    width: 12px;
+    height: 12px;
+    padding: 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
 }
 
 .recipe__container {
