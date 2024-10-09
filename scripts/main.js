@@ -182,16 +182,30 @@ function handleSearchInput(searchQuery, items, dropdown, selectedItems) {
 function filterRecipes() {
   let filteredRecipes = recipes;
 
-  // Apply search bar filter if query exists and has at least 3 characters
+  // Apply search bar filter if query exists and has at least 3 characters // TEST
   const searchQuery = searchInput.value.toLowerCase();
   if (searchQuery.length >= 3) {
-    filteredRecipes = filteredRecipes.filter((recipe) => {
-      const nameMatch = recipe.name.toLowerCase().includes(searchQuery);
-      const ingredientMatch = recipe.ingredients.some((ingredient) =>
-        ingredient.ingredient.toLowerCase().includes(searchQuery)
-      );
-      return nameMatch || ingredientMatch;
-    });
+    let newFilteredRecipes = [];
+
+    for (let i = 0; i < filteredRecipes.length; i++) {
+      let recipe = filteredRecipes[i];
+      let nameMatch = recipe.name.toLowerCase().includes(searchQuery);
+
+      let ingredientMatch = false;
+      for (let j = 0; j < recipe.ingredients.length; j++) {
+        let ingredient = recipe.ingredients[j].ingredient.toLowerCase();
+        if (ingredient.includes(searchQuery)) {
+          ingredientMatch = true;
+          break;
+        }
+      }
+
+      if (nameMatch || ingredientMatch) {
+        newFilteredRecipes.push(recipe);
+      }
+    }
+
+    filteredRecipes = newFilteredRecipes;
   }
 
   // Apply dropdown filters
