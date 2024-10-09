@@ -35,8 +35,11 @@ function createRecipeCard(recipe) {
 
   article.innerHTML = `
         <div class="recipe__card__img">
-            <img src="/assets/img/recipes/${recipe.image}" alt="${recipe.name}">
+            <img src="./assets/img/recipes/${recipe.image}" alt="${
+    recipe.name
+  }">
         </div> 
+        <div class="recipe__time">${recipe.time}min</div> 
         <div class="recipe__content">
             <h2>${recipe.name}</h2>
             <div class="recipe__info">
@@ -134,7 +137,7 @@ function populateDropdown(dropdown, items, selectedItems) {
       <a class="dropdown-item" href="#">${item}</a>
       ${
         isSelected
-          ? '<button class="remove-tag"><img src="/assets/img/icons/icon-close-mini.svg" alt="Remove tag"></button>'
+          ? '<button class="remove-tag"><img src="./assets/img/icons/icon-close-mini.svg" alt="Remove tag"></button>'
           : ""
       }
     `;
@@ -173,13 +176,15 @@ function handleSearchInput(searchQuery, items, dropdown, selectedItems) {
 
 /**
  * Filter recipes based on selected items from dropdowns and search query.
+ * WILL CHANGE IN THE NATIVE LOOP VERSION /!\
+ * --> for (let i = 0; i < recipes.length; i++) ...
  */
 function filterRecipes() {
   let filteredRecipes = recipes;
 
-  // Apply search bar filter if query exists
+  // Apply search bar filter if query exists and has at least 3 characters
   const searchQuery = searchInput.value.toLowerCase();
-  if (searchQuery) {
+  if (searchQuery.length >= 3) {
     filteredRecipes = filteredRecipes.filter((recipe) => {
       const nameMatch = recipe.name.toLowerCase().includes(searchQuery);
       const ingredientMatch = recipe.ingredients.some((ingredient) =>
@@ -249,7 +254,7 @@ function updateActiveTags() {
   allActiveTags.forEach((tag) => {
     const tagElement = document.createElement("span");
     tagElement.classList.add("active__tag__item");
-    tagElement.innerHTML = `${tag} <button class="remove-tag"><img src="/assets/img/icons/icon-close.svg" alt="Remove tag"></button>`;
+    tagElement.innerHTML = `${tag} <button class="remove-tag"><img src="./assets/img/icons/icon-close.svg" alt="Remove tag"></button>`;
 
     // Remove tag when clicked and update the filters
     tagElement.querySelector(".remove-tag").addEventListener("click", () => {

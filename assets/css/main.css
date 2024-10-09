@@ -3,7 +3,7 @@ body {
 }
 
 .header {
-  background: url("/assets/img/Hero-header.jpeg") no-repeat center center;
+  background: url("/assets/img/Hero-header.webp") no-repeat center center;
   background-size: cover;
   width: 100vw;
   height: 620px;
@@ -269,7 +269,7 @@ main {
 
 .recipe__container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   width: 100%;
   flex-wrap: wrap;
   padding: 20px 0px;
@@ -277,13 +277,28 @@ main {
 }
 
 .recipe__card {
-  flex: 1 0 30%;
+  flex-grow: 0;
+  flex-shrink: 0;
   background-color: #fff;
   border-radius: 21px;
   box-shadow: 0px 4px 34px 30px rgba(0, 0, 0, 0.04);
-  width: 380px;
+  width: 400px;
   flex-shrink: 0;
   overflow: hidden;
+}
+.recipe__card .recipe__time {
+  width: 63px;
+  height: 26px;
+  padding: 5px 15px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 14px;
+  font-size: 12px;
+  background: #ffd15b;
+  position: relative;
+  top: -240px;
+  right: -320px;
 }
 .recipe__card__img {
   width: 100%;
