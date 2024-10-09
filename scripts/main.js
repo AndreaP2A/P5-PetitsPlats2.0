@@ -228,6 +228,18 @@ function filterRecipes() {
 }
 
 /**
+ * Sanitizes input by removing potentially harmful characters.
+ *
+ * @param {string} input - The user input to sanitize.
+ * @returns {string} - The sanitized input.
+ */
+function sanitizeInput(input) {
+  const element = document.createElement("div");
+  element.innerText = input;
+  return element.innerHTML;
+}
+
+/**
  * Update dropdown lists dynamically based on the displayed recipes.
  */
 function updateDropdowns(filteredRecipes) {
@@ -307,34 +319,39 @@ function toggleSelection(array, item) {
 }
 
 /**
- * Event listener for search input.
+ * Event listener for search input in the hero search bar, calling sanitizing function
  */
 searchInput.addEventListener("input", () => {
-  filterRecipes(); // Filter recipes when the search query changes
+  const sanitizedQuery = sanitizeInput(searchInput.value);
+  // Use the sanitized query for filtering recipes
+  filterRecipes(sanitizedQuery);
 });
 
 /**
- * Event listeners for the dropdown search bars.
+ * Event listeners for the dropdown search bars, calling sanitizing function
  */
 ingredientSearchBar.addEventListener("input", (e) => {
+  const sanitizedQuery = sanitizeInput(e.target.value);
   handleSearchInput(
-    e.target.value,
+    sanitizedQuery,
     getUniqueItemsFromRecipes(recipes).ingredients,
     ingredientDropdown,
     selectedIngredients
   );
 });
 applianceSearchBar.addEventListener("input", (e) => {
+  const sanitizedQuery = sanitizeInput(e.target.value);
   handleSearchInput(
-    e.target.value,
+    sanitizedQuery,
     getUniqueItemsFromRecipes(recipes).appliance,
     applianceDropdown,
     selectedAppliance
   );
 });
 ustensilSearchBar.addEventListener("input", (e) => {
+  const sanitizedQuery = sanitizeInput(e.target.value);
   handleSearchInput(
-    e.target.value,
+    sanitizedQuery,
     getUniqueItemsFromRecipes(recipes).ustensils,
     ustensilDropdown,
     selectedUstensils
