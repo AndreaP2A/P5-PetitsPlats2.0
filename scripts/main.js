@@ -3,7 +3,7 @@ import recipes from "./recipes.js";
 const searchInput = document.querySelector(".hero__searchbar input");
 const recipeContainer = document.querySelector(".recipe__container");
 const sortTitle = document.querySelector(".sort__title");
-const activeTagContainer = document.querySelector(".active__tags"); // Reference to .active__tags div
+const activeTagContainer = document.querySelector(".active__tags");
 
 const ingredientDropdown = document.querySelector(".dropdown__ingredients");
 const applianceDropdown = document.querySelector(".dropdown__appliances");
@@ -176,8 +176,6 @@ function handleSearchInput(searchQuery, items, dropdown, selectedItems) {
 
 /**
  * Filter recipes based on selected items from dropdowns and search query.
- * WILL CHANGE IN THE NATIVE LOOP VERSION /!\
- * --> for (let i = 0; i < recipes.length; i++) ...
  */
 function filterRecipes() {
   let filteredRecipes = recipes;
@@ -390,7 +388,7 @@ function handleDropdownToggle() {
 function init() {
   displayRecipes(recipes);
   updateDropdowns(recipes);
-  handleDropdownToggle(); // Initialize dropdown toggle functionality
+  handleDropdownToggle();
 }
 
 document.addEventListener("DOMContentLoaded", init);
