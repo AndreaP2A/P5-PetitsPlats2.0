@@ -176,13 +176,11 @@ function handleSearchInput(searchQuery, items, dropdown, selectedItems) {
 
 /**
  * Filter recipes based on selected items from dropdowns and search query.
- * WILL CHANGE IN THE NATIVE LOOP VERSION /!\
- * --> for (let i = 0; i < recipes.length; i++) ...
  */
 function filterRecipes() {
   let filteredRecipes = recipes;
 
-  // Apply search bar filter if query exists and has at least 3 characters // TEST
+  // Apply search bar filter if query exists and has at least 3 characters
   const searchQuery = searchInput.value.toLowerCase();
   if (searchQuery.length >= 3) {
     let newFilteredRecipes = [];

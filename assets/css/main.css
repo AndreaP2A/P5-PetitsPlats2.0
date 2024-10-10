@@ -3,7 +3,7 @@ body {
 }
 
 .header {
-  background: url("/assets/img/Hero-header.webp") no-repeat center center;
+  background: url("./assets/img/Hero-header.webp") no-repeat center center;
   background-size: cover;
   width: 100vw;
   height: 620px;
